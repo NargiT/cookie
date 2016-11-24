@@ -30,6 +30,18 @@ def protected():
     else:
         return render_template('protected.html', connected=True)
 
+@app.route('/logout')
+def logout():
+
+    big8value = request.cookies.get('big8')
+
+    if big8value is None:
+        return render_template('logout.html')
+    else:
+        response = make_response(render_template('logout.html'))
+        response.set_cookie('big8', '', expires=0)
+        return response
+
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
