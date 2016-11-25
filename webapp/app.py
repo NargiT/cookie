@@ -1,10 +1,10 @@
 import os
-import socket
 
 from flask import Flask
 from flask import render_template
 from flask import make_response
 from flask import request
+import json
 import time
 
 app = Flask(__name__)
@@ -69,7 +69,7 @@ def protected():
     if big8value is None:
         return render_template('timeout.html')
     else:
-        return render_template('protected.html', connected=True)
+        return render_template('protected.html', connected=json.dumps(True))
 
 
 @app.route('/logout')

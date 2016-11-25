@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{provider}}</title>
+    <title>{{hostname}}</title>
 </head>
 <body>
-    <p>You were disconnected</p>
+    <p>{{hostname}}</p>
+    <a href="/login/tigran">login</a>
+    <a href="/logout">logout</a>
+    <a href="/protected">protected area</a>
+
+    <p>You were disconnected due to timeout</p>
+    <div>
+        <img src="static/img/cookie_timeout.png" alt="cookie timeout" />
+    </div>
     <a href="/">back to home</a>
 </body>
 </html>

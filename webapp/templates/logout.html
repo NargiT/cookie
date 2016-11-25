@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{provider}}</title>
+    <title>{{hostname}}</title>
 </head>
 <body>
-    <p>You are logged out from all sub domains</p>
+    <p>{{hostname}}</p>
+    <a href="/login/tigran">login</a>
+    <a href="/logout">logout</a>
+    <a href="/protected">protected area</a>
 
+
+    <p>You are logged out from all sub domains</p>
+    <img src="static/img/dead_cookie.bmp" alt="dead_cookie" />
     <img src="http://premium:5000/logout">
 </body>
 </html>

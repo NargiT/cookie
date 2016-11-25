@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{provider}}</title>
+    <title>{{ hostname }}</title>
+    <link rel="stylesheet" type="text/css" href="static/css/main.css" />
 </head>
 <body>
 
-<p>You are in secure mode '{{connected}}'</p>
+    <p>{{hostname}}</p>
+    <a href="/login/tigran">login</a>
+    <a href="/logout">logout</a>
+    <a href="/protected">protected area</a>
+
+    <p>You are in secure mode</p>
+    <div id="js-cookie" class="Cookie--{{ connected }}"></div>
+
 </body>
 </html>
