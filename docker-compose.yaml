@@ -2,19 +2,22 @@ version: '2'
 services:
   account:
     image: training/webapp
-    ports:
-      - "5000:5000"
     volumes:
-      - ./account-domain-com:/opt/webapp/
+      - ./webapp:/opt/webapp/
+    restart: always
+    environment:
+      APP_ID: account
   premium:
     image: training/webapp
-    ports:
-      - "5001:5000"
     volumes:
-      - ./premium-domain-com:/opt/webapp/
+      - ./webapp:/opt/webapp/
+    restart: always
+    environment:
+      APP_ID: premium
   whitelabel:
     image: training/webapp
-    ports:
-      - "5002:5002"
     volumes:
-      - ./whitelabel-domain-com:/opt/webapp/
+      - ./webapp:/opt/webapp/
+    restart: always
+    environment:
+      APP_ID: whitelabel

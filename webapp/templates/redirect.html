@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{hostname}}</title>
+</head>
+<body>
+<p>Hello <b>{{username}}</b>, please wait while we are redirecting you.</p>
+
+<p>If you do not want to wait :: <a href="protected">Secure Area</a></p>
+
+<div id="links">
+    loading...
+</div>
+
+<script type="application/javascript">
+
+    var Links = function (host, token) {
+        this.host = host;
+        this.token = token;
+    };
+
+    Links.prototype = {
+
+        generate: function (account, premium, whitelabel) {
+            if (this.host === account) {
+                document.getElementById("links").innerHTML =
+                        '<img src="http://premium:5000/cookie/'+this.token+'" style="display: none"> ' +
+                        '<a href="http://premium:5000/protected">PREMIUM</a>';
+            } else if (this.host === premium) {
+                document.getElementById("links").innerHTML =
+                        '<img src="http://account:5000/cookie/'+this.token+'" style="display: none"> ' +
+                        '<a href="http://account:5000/protected">ACCOUNT</a>';
+            } else if (this.host === whitelabel) {
+                document.getElementById("links").innerHTML = "no other services"
+            }
+        }
+    }
+
+    new Links('{{hostname}}', '{{token}}').generate("account", "premium", "whitelabel");
+</script>
+
+</body>
+</html>
