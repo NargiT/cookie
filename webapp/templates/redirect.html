@@ -20,12 +20,12 @@
 
 <script type="application/javascript">
 
-    var Links = function (host, token) {
+    var LoginLinks = function (host, token) {
         this.host = host;
         this.token = token;
     };
 
-    Links.prototype = {
+    LoginLinks.prototype = {
 
         generate: function (account, premium, whitelabel) {
             if (this.host === account) {
@@ -42,7 +42,7 @@
         }
     }
 
-    new Links('{{hostname}}', '{{token}}').generate("account", "premium", "whitelabel");
+    new LoginLinks('{{hostname}}', '{{token}}').generate("account", "premium", "whitelabel");
 </script>
 
 </body>

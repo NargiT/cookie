@@ -45,17 +45,19 @@ def decryptToken(token):
     :param token:
     :type token: str
     """
-    return token[::-1]
+    return token[::-1].lower()
 
 
 @app.route('/cookie/<string:token>')
 def cookie(token):
+    hostname = os.environ['APP_ID']
+
     if isTokenValid(token):
         username = decryptToken(token)
         newToken = encryptToken(username)
         return buildResponse(username, newToken)
     else:
-        return render_template('timeout.html')
+        return render_template('timeout.html', hostname=hostname)
 
 
 def isTokenValid(token):
@@ -64,22 +66,24 @@ def isTokenValid(token):
 
 @app.route('/protected')
 def protected():
+    hostname = os.environ['APP_ID']
     big8value = request.cookies.get('big8')
 
     if big8value is None:
-        return render_template('timeout.html')
+        return render_template('timeout.html', hostname=hostname)
     else:
-        return render_template('protected.html', connected=json.dumps(True))
+        return render_template('protected.html', connected=json.dumps(True), hostname=hostname)
 
 
 @app.route('/logout')
 def logout():
+    hostname = os.environ['APP_ID']
     big8value = request.cookies.get('big8')
 
     if big8value is None:
-        return render_template('logout.html')
+        return render_template('logout.html', hostname=hostname)
     else:
-        response = make_response(render_template('logout.html'))
+        response = make_response(render_template('logout.html', hostname=hostname))
         response.set_cookie('big8', '', expires=0)
         return response
 

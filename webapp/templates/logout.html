@@ -5,14 +5,37 @@
     <title>{{hostname}}</title>
 </head>
 <body>
-    <p>{{hostname}}</p>
-    <a href="/login/tigran">login</a>
-    <a href="/logout">logout</a>
-    <a href="/protected">protected area</a>
+<p>{{hostname}}</p>
+<a href="/login/tigran">login</a>
+<a href="/logout">logout</a>
+<a href="/protected">protected area</a>
 
 
-    <p>You are logged out from all sub domains</p>
-    <img src="static/img/dead_cookie.bmp" alt="dead_cookie" />
-    <img src="http://premium:5000/logout">
+<p>You are logged out from account</p>
+<img src="static/img/dead_cookie.bmp" alt="dead_cookie"/>
+<div id="js-links"></div>
+<script type="application/javascript">
+
+    var LogoutLinks = function (host) {
+        this.host = host;
+    };
+
+    LogoutLinks.prototype = {
+
+        generate: function (account, premium, whitelabel) {
+            if (this.host === account) {
+                document.getElementById("js-links").innerHTML =
+                        '<img src="http://premium:5000/logout" style="display: none">You are logged out from ' + premium;
+            } else if (this.host === premium) {
+                document.getElementById("js-links").innerHTML =
+                        '<img src="http://account:5000/logout" style="display: none"> You are logged out from ' + account;
+            } else if (this.host === whitelabel) {
+                document.getElementById("links").innerHTML = "no other services to logout"
+            }
+        }
+    }
+
+    new LogoutLinks('{{hostname}}').generate("account", "premium", "whitelabel");
+</script>
 </body>
 </html>
